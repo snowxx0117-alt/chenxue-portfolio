@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHEN XUE — Visual Designer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            surface: '#0A0A0A', accent: '#8A2BE2', 'accent-bright': '#B026FF',
+            'text-primary': '#EDEDED', 'text-secondary': '#A1A1AA', 'text-muted': '#71717A',
+            'border-subtle': 'rgba(255,255,255,0.06)',
+          },
+          fontFamily: {
+            display: ['"Alibaba PuHuiTi"','"Space Grotesk"','system-ui','sans-serif'],
+            body: ['"Alibaba PuHuiTi"','"Inter"','system-ui','sans-serif'],
+            mono: ['"JetBrains Mono"','monospace'],
+            cn: ['"Alibaba PuHuiTi"','"PingFang SC"','"Microsoft YaHei"','sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Alibaba PuHuiTi';
+      src: url('https://puhuiti.oss-cn-hangzhou.aliyuncs.com/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-45-Light/AlibabaPuHuiTi-3-45-Light.woff2') format('woff2'),
+           url('https://puhuiti.oss-cn-hangzhou.aliyuncs.com/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-45-Light/AlibabaPuHuiTi-3-45-Light.woff') format('woff');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Alibaba PuHuiTi';
+      src: url('https://puhuiti.oss-cn-hangzhou.aliyuncs.com/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.woff2') format('woff2'),
+           url('https://puhuiti.oss-cn-hangzhou.aliyuncs.com/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.woff') format('woff');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Alibaba PuHuiTi';
+      src: url('https://puhuiti.oss-cn-hangzhou.aliyuncs.com/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-65-Medium/AlibabaPuHuiTi-3-65-Medium.woff2') format('woff2'),
+           url('https://puhuiti.oss-cn-hangzhou.aliyuncs.com/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-65-Medium/AlibabaPuHuiTi-3-65-Medium.woff') format('woff');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Alibaba PuHuiTi';
+      src: url('https://puhuiti.oss-cn-hangzhou.aliyuncs.com/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-75-SemiBold/AlibabaPuHuiTi-3-75-SemiBold.woff2') format('woff2'),
+           url('https://puhuiti.oss-cn-hangzhou.aliyuncs.com/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-75-SemiBold/AlibabaPuHuiTi-3-75-SemiBold.woff') format('woff');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Alibaba PuHuiTi';
+      src: url('https://puhuiti.oss-cn-hangzhou.aliyuncs.com/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-85-Bold/AlibabaPuHuiTi-3-85-Bold.woff2') format('woff2'),
+           url('https://puhuiti.oss-cn-hangzhou.aliyuncs.com/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-85-Bold/AlibabaPuHuiTi-3-85-Bold.woff') format('woff');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Alibaba PuHuiTi';
+      src: url('https://puhuiti.oss-cn-hangzhou.aliyuncs.com/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-115-Black/AlibabaPuHuiTi-3-115-Black.woff2') format('woff2'),
+           url('https://puhuiti.oss-cn-hangzhou.aliyuncs.com/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-115-Black/AlibabaPuHuiTi-3-115-Black.woff') format('woff');
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:#0A0A0A;color:#EDEDED;font-family:'Alibaba PuHuiTi','Inter',system-ui,sans-serif;overflow-x:hidden}
+    .grid-bg{background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:60px 60px}
+    .glass-card{background:rgba(17,17,17,.6);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.06);transition:all .4s cubic-bezier(.16,1,.3,1)}
+    .glass-card:hover{transform:translateY(-4px);border-color:rgba(138,43,226,.4);box-shadow:0 0 30px rgba(138,43,226,.08),0 20px 60px rgba(0,0,0,.4)}
+    .nav-glass{background:rgba(10,10,10,.7);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.04)}
+    .nav-link{color:#A1A1AA;transition:color .3s;position:relative}.nav-link:hover,.nav-link.active{color:#EDEDED}
+    .accent-text{background:linear-gradient(135deg,#8A2BE2,#B026FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .skill-pill{background:rgba(138,43,226,.08);border:1px solid rgba(138,43,226,.2);transition:all .3s}.skill-pill:hover{background:rgba(138,43,226,.15);border-color:rgba(138,43,226,.5)}
+    .orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none}
+    .cta-glow{position:relative;overflow:hidden;border:1px solid rgba(138,43,226,.5);transition:all .3s}
+    .cta-glow::before{content:'';position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;background:conic-gradient(from 0deg,transparent,#8A2BE2,#B026FF,transparent,transparent);border-radius:inherit;z-index:-1;animation:spin 3s linear infinite}
+    .cta-glow::after{content:'';position:absolute;inset:1px;background:#0A0A0A;border-radius:inherit;z-index:-1}
+    @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .cta-glow:hover{box-shadow:0 0 30px rgba(138,43,226,.3);border-color:rgba(176,38,255,.8)}
+    .reveal{opacity:0;transform:translateY(30px);transition:all .7s cubic-bezier(.16,1,.3,1)}.reveal.visible{opacity:1;transform:translateY(0)}
+    .tab-btn{position:relative;color:#71717A;transition:color .3s}.tab-btn.active{color:#EDEDED}
+    .tab-btn::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:linear-gradient(90deg,#8A2BE2,#B026FF);transition:width .3s;border-radius:1px}.tab-btn.active::after,.tab-btn:hover::after{width:100%}
+    .work-card{transition:all .4s cubic-bezier(.16,1,.3,1)}.work-card:hover{transform:translateY(-4px);box-shadow:0 0 10px rgba(138,43,226,0.125),0 0 20px rgba(138,43,226,0.075)}.work-card:hover .work-img img{transform:scale(1.05)}.work-card .work-img img{transition:transform .5s cubic-bezier(.16,1,.3,1)}
+    .work-img.cover-zoom img{transform:scale(1.05)!important}.work-card:hover .work-img.cover-zoom img{transform:scale(1.1)!important}
+    .email-link{position:relative;display:inline-block;color:#A1A1AA;text-decoration:none;transition:color .3s}.email-link:hover{color:#B026FF}.email-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:linear-gradient(90deg,#8A2BE2,#B026FF);transition:width .4s}.email-link:hover::after{width:100%}
+    .mobile-menu{opacity:0;pointer-events:none;transition:opacity .35s cubic-bezier(.16,1,.3,1);position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.4);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}.mobile-menu.open{opacity:1;pointer-events:auto}
+    .noise-overlay{position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.02;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:256px}
+    ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:#0A0A0A}::-webkit-scrollbar-thumb{background:#333;border-radius:3px}
+    .bento-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto;gap:1rem}.bento-wide{grid-column:span 2}.bento-tall{grid-row:span 2}
+    @media(max-width:768px){.bento-grid{grid-template-columns:1fr}.bento-wide,.bento-tall{grid-column:span 1;grid-row:span 1}}
+    @media(max-width:768px){#modalContainer [style*="height:55vw"]{height:56vw!important;min-height:180px!important}}
+    .works-grid{display:grid;grid-template-columns:1.7fr 1fr 1fr;grid-template-rows:226px 226px;gap:20px}.works-grid .works-big{grid-row:span 2}
+    @media(max-width:1024px){.works-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}.works-grid .works-big{grid-row:span 1}}
+    @media(max-width:640px){.works-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body class="grid-bg">
+  <div class="noise-overlay"></div>
+
+  <!-- NAV -->
+  <nav class="nav-glass fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-[1152px] mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#hero" class="font-display font-bold text-lg tracking-tight text-text-primary">Snowxx<span class="accent-text">.</span></a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#hero" class="nav-link font-body text-sm tracking-wide">Home</a>
+        <a href="#about" class="nav-link font-body text-sm tracking-wide">About</a>
+        <a href="#works" class="nav-link font-body text-sm tracking-wide">Works</a>
+        <a href="#contact" class="nav-link font-body text-sm tracking-wide">Contact</a>
+      </div>
+      <button id="menuToggle" class="md:hidden flex flex-col gap-1.5 p-2 relative z-[201]">
+        <span class="w-5 h-px bg-text-primary transition-all duration-300" id="bar1"></span>
+        <span class="w-5 h-px bg-text-primary transition-all duration-300" id="bar2"></span>
+        <span class="w-3.5 h-px bg-text-primary transition-all duration-300 ml-auto" id="bar3"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU OVERLAY (outside nav, full screen) -->
+  <div id="mobileMenu" class="mobile-menu flex flex-col md:hidden">
+    <!-- 关闭按钮 -->
+    <div class="flex items-center justify-between px-6 h-16 border-b border-white/[.06]">
+      <span class="font-display font-bold text-lg tracking-tight text-text-primary">Snowxx<span class="accent-text">.</span></span>
+      <button id="menuClose" class="w-10 h-10 flex items-center justify-center hover:opacity-60 transition-opacity">
+        <svg class="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <!-- 菜单项 -->
+    <div class="flex-1 flex flex-col items-center justify-center gap-10">
+      <a href="#hero" class="nav-mobile-link font-display text-3xl font-bold text-text-primary hover:text-accent transition-colors">Home</a>
+      <a href="#about" class="nav-mobile-link font-display text-3xl font-bold text-text-primary hover:text-accent transition-colors">About</a>
+      <a href="#works" class="nav-mobile-link font-display text-3xl font-bold text-text-primary hover:text-accent transition-colors">Works</a>
+      <a href="#contact" class="nav-mobile-link font-display text-3xl font-bold text-text-primary hover:text-accent transition-colors">Contact</a>
+    </div>
+    <!-- 底部装饰 -->
+    <div class="px-6 pb-10 text-center">
+      <p class="font-mono text-xs text-text-muted tracking-widest">VISUAL DESIGNER · CHEN XUE</p>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero" class="relative min-h-screen flex items-center overflow-hidden">
+    <div class="orb w-[500px] h-[500px] bg-accent opacity-15 -top-40 -right-10" style="position:absolute"></div>
+    <div class="orb w-[300px] h-[300px] bg-accent-bright opacity-15 bottom-20 -left-20" style="position:absolute"></div>
+    <div class="max-w-[1152px] mx-auto px-6 py-32 w-full">
+      <div class="flex flex-col lg:flex-row items-center lg:items-start gap-12 lg:gap-16">
+        <div class="flex-1 reveal w-full text-center lg:text-left">
+          <p class="font-mono text-xs text-accent tracking-[0.3em] uppercase mb-5">Visual Designer</p>
+          <h1 class="font-body font-bold text-[42px] md:text-[52px] lg:text-[62px] tracking-tight leading-[1.1] mb-6">WELCOME TO MY COVERT <span class="accent-text">VISUAL STASH.</span></h1>
+          <div class="flex items-baseline gap-3 mb-4 justify-center lg:justify-start">
+            <p class="font-body font-bold text-[28px] text-text-primary">CHEN XUE</p>
+            <p class="font-cn font-light text-[24px] text-white tracking-tight">陈雪</p>
+          </div>
+          <p class="font-cn font-light text-lg text-white leading-7 mb-10">8年以上视觉设计经验，专注于教育行业<br class="lg:hidden">（职业教育与在线教育）</p>
+          <div class="flex justify-center lg:justify-start">
+            <a href="#works" class="cta-glow inline-flex items-center gap-3 px-8 py-3.5 rounded-lg font-body text-sm font-medium text-text-primary tracking-wide">Explore My Work <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          </div>
+        </div>
+        <div class="reveal flex-shrink-0 flex justify-center lg:justify-start" style="transition-delay:.2s">
+          <div class="relative group">
+            <div class="w-[260px] h-[380px] lg:w-[323px] lg:h-[432px] rounded-2xl overflow-hidden border border-border-subtle group-hover:border-[rgba(138,43,226,.4)] transition-all duration-500 group-hover:shadow-[0_0_40px_rgba(138,43,226,.15)]">
+              <img src="1.webp" alt="Chen Xue" class="w-full h-full object-cover object-top grayscale contrast-[1.1] brightness-90 group-hover:grayscale-[30%] transition-all duration-500">
+            </div>
+            <div class="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-accent/40 rounded-tl-md"></div>
+            <div class="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-accent/40 rounded-br-md"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="#about" class="scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40 hover:opacity-100 transition-all duration-300 cursor-pointer group">
+      <div class="w-px h-8 bg-gradient-to-b from-transparent to-text-muted group-hover:from-[#8A2BE2]/0 group-hover:to-[#8A2BE2] transition-all duration-300"></div>
+      <p class="font-mono text-[10px] text-text-muted tracking-widest group-hover:text-[#8A2BE2] transition-colors duration-300">SCROLL</p>
+    </a>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="relative py-28 md:py-36">
+    <div class="orb w-[400px] h-[400px] bg-accent opacity-[.07] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style="position:absolute"></div>
+    <div class="max-w-[1152px] mx-auto px-6">
+      <div class="reveal mb-16">
+        <p class="font-mono text-xs text-accent tracking-[0.3em] uppercase mb-3">About Me</p>
+        <h2 class="font-cn font-semibold text-3xl md:text-4xl tracking-tight">为教育赛道提供精准视觉解决方案<span class="accent-text">。</span></h2>
+      </div>
+      <div class="bento-grid">
+        <div class="bento-wide glass-card rounded-2xl p-8 reveal">
+          <div class="flex items-center gap-3 mb-5"><div class="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center"><svg class="w-4 h-4 text-accent-bright" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg></div><h3 class="font-cn font-semibold text-lg text-text-primary">核心能力</h3></div>
+          <p class="text-text-secondary leading-relaxed text-base font-cn">具备<span class="text-text-primary font-medium">多风格视觉适配能力</span>，横跨企业主站设计、产品界面到多业务线整合的闭环设计。从视觉规范定义、全屏视觉排版到多端响应式适配，拥有全链路设计的实战经验。</p>
+        </div>
+        <div class="bento-tall glass-card rounded-2xl p-8 reveal flex flex-col justify-between" style="transition-delay:.1s">
+          <div>
+            <div class="flex items-center gap-3 mb-5"><div class="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center"><svg class="w-4 h-4 text-accent-bright" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><h3 class="font-cn font-semibold text-lg text-text-primary">重点业绩</h3></div>
+            <ul class="space-y-4 text-base">
+              <li class="flex items-start gap-3 text-text-secondary font-cn"><span class="w-1 h-1 rounded-full bg-accent mt-2.5 flex-shrink-0"></span><span>独立完成 <span class="text-text-primary font-medium">3套</span> 品牌官网全视觉落地</span></li>
+              <li class="flex items-start gap-3 text-text-secondary font-cn"><span class="w-1 h-1 rounded-full bg-accent mt-2.5 flex-shrink-0"></span><span>独立完成 <span class="text-text-primary font-medium">B 端实训系统</span>界面视觉设计</span></li>
+              <li class="flex items-start gap-3 text-text-secondary font-cn"><span class="w-1 h-1 rounded-full bg-accent mt-2.5 flex-shrink-0"></span><span>为职业教育提供多套品牌升级与视觉整体解决方案</span></li>
+            </ul>
+          </div>
+          <div class="mt-8 pt-6 border-t border-border-subtle">
+            <div class="flex justify-between text-center">
+              <div><p class="font-display font-bold text-2xl text-text-primary">8<span class="text-accent">+</span></p><p class="text-text-muted text-xs mt-1 font-cn">年设计经验</p></div>
+              <div><p class="font-display font-bold text-2xl text-text-primary">3<span class="text-accent text-sm">套</span></p><p class="text-text-muted text-xs mt-1 font-cn">官网落地</p></div>
+              <div><p class="font-display font-bold text-2xl text-text-primary">2<span class="text-accent text-sm">大</span></p><p class="text-text-muted text-xs mt-1 font-cn">在线与职业教育</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="bento-wide glass-card rounded-2xl p-8 reveal" style="transition-delay:.2s">
+          <div class="flex items-center gap-3 mb-5"><div class="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center"><svg class="w-4 h-4 text-accent-bright" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></div><h3 class="font-cn font-semibold text-lg text-text-primary">技能树</h3></div>
+          <div class="flex flex-wrap gap-2.5 mb-3">
+            <span class="skill-pill px-4 py-2 rounded-lg text-sm text-text-secondary font-mono">Figma</span>
+            <span class="skill-pill px-4 py-2 rounded-lg text-sm text-text-secondary font-mono">Photoshop</span>
+            <span class="skill-pill px-4 py-2 rounded-lg text-sm text-text-secondary font-mono">Illustrator</span>
+            <span class="skill-pill px-4 py-2 rounded-lg text-sm text-text-secondary font-mono">Premiere</span>
+            <span class="skill-pill px-4 py-2 rounded-lg text-sm text-text-secondary font-mono">PowerPoint</span>
+            <span class="skill-pill px-4 py-2 rounded-lg text-sm text-text-secondary font-cn">剪映</span>
+          </div>
+          <div class="flex flex-wrap gap-2.5">
+            <span class="skill-pill px-4 py-2 rounded-lg text-sm text-accent-bright font-cn font-medium">AI 辅助设计</span>
+            <span class="skill-pill px-4 py-2 rounded-lg text-sm text-text-secondary font-mono">Nano banana</span>
+            <span class="skill-pill px-4 py-2 rounded-lg text-sm text-text-secondary font-mono">Claude</span>
+            <span class="skill-pill px-4 py-2 rounded-lg text-sm text-text-secondary font-mono">Seedream</span>
+            <span class="skill-pill px-4 py-2 rounded-lg text-sm text-text-secondary font-mono">Midjourney</span>
+            <span class="skill-pill px-4 py-2 rounded-lg text-sm text-text-secondary font-mono">……</span>
+          </div>
+          <p class="text-text-muted text-xs mt-5 font-mono tracking-wide">AIGC × 传统设计 → 效率提升闭环</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKS -->
+  <section id="works" class="relative py-28 md:py-36">
+    <div id="ui-design"></div>
+    <div class="max-w-[1152px] mx-auto px-6">
+      <div class="reveal mb-12">
+        <p class="font-mono text-xs text-accent tracking-[0.3em] uppercase mb-3">Portfolio</p>
+        <h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight">Selected Works<span class="accent-text">.</span></h2>
+      </div>
+      <div class="reveal flex gap-6 md:gap-8 mb-10 border-b border-border-subtle pb-4" style="transition-delay:.1s">
+        <button class="tab-btn active font-cn text-base font-medium pb-1" data-tab="ui">UI 设计</button>
+        <button class="tab-btn font-cn text-base font-medium pb-1" data-tab="graphic">平面设计</button>
+        <button class="tab-btn font-cn text-base font-medium pb-1" data-tab="ppt">PPT 设计</button>
+      </div>
+      <!-- UI -->
+      <div id="tab-ui" class="tab-content">
+        <div class="works-grid">
+          <a href="work-ui-03.html" class="works-big work-card glass-card rounded-xl overflow-hidden reveal block">
+            <div class="work-img h-[calc(100%-80px)] overflow-hidden"><img src="2.webp" alt="联创新世纪官网英国站" class="w-full h-full object-cover"></div>
+            <div class="p-5"><h4 class="font-cn font-semibold text-text-primary text-sm mb-1">联创新世纪官网英国站</h4><p class="text-text-muted text-xs font-cn">海外官网视觉本地化设计</p></div>
+          </a>
+          <a href="work-ui-02.html" class="work-card glass-card rounded-xl overflow-hidden reveal block" style="transition-delay:.1s">
+            <div class="work-img h-[146px] overflow-hidden"><img src="3.webp" alt="联创世纪职教官网" class="w-full h-full object-cover"></div>
+            <div class="p-5"><h4 class="font-cn font-semibold text-text-primary text-sm mb-1">联创世纪职教官网</h4><p class="text-text-muted text-xs font-cn">职业教育品牌官网全站 UI 设计</p></div>
+          </a>
+          <a href="work-ui-01.html" class="work-card glass-card rounded-xl overflow-hidden reveal block" style="transition-delay:.15s">
+            <div class="work-img h-[146px] overflow-hidden"><img src="4.webp" alt="联创新世纪官网" class="w-full h-full object-cover"></div>
+            <div class="p-5"><h4 class="font-cn font-semibold text-text-primary text-sm mb-1">联创新世纪官网</h4><p class="text-text-muted text-xs font-cn">品牌官网全站视觉系统设计与落地</p></div>
+          </a>
+          <a href="work-ui-04.html" class="work-card glass-card rounded-xl overflow-hidden reveal block" style="transition-delay:.2s">
+            <div class="work-img h-[146px] overflow-hidden"><img src="5.webp" alt="国家级教学成果奖研讨会" class="w-full h-full object-cover"></div>
+            <div class="p-5"><h4 class="font-cn font-semibold text-text-primary text-sm mb-1">国家级教学成果奖研讨会</h4><p class="text-text-muted text-xs font-cn">中国教育电视台国家级教育盛会视觉设计</p></div>
+          </a>
+          <a href="work-ui-05.html" class="work-card glass-card rounded-xl overflow-hidden reveal block" style="transition-delay:.25s">
+            <div class="work-img h-[146px] overflow-hidden" style="background:linear-gradient(138deg,#8c65f0,#29004f 69%)"><img src="6.webp" alt="新媒体营销理实一体化实训系统" class="w-full h-full object-cover"></div>
+            <div class="p-5"><h4 class="font-cn font-semibold text-text-primary text-sm mb-1">新媒体营销理实一体化实训系统</h4><p class="text-text-muted text-xs font-cn">基于真实岗位需求的沉浸式 B 端实战训练平台</p></div>
+          </a>
+        </div>
+      </div>
+      <!-- Graphic -->
+      <div id="tab-graphic" class="tab-content hidden">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div class="work-card glass-card aspect-[4/3] rounded-xl relative cursor-pointer overflow-hidden reveal" onclick="openModal('gd-cover')" style="background:transparent"><div class="work-img cover-zoom w-full h-full absolute inset-0"><img src="06.webp" alt="教材封面设计" class="w-full h-full object-cover"></div><div class="absolute bottom-0 left-0 right-0 p-5 pointer-events-none bg-gradient-to-t from-black/60 to-transparent"><h4 class="font-cn font-semibold text-text-primary text-base mb-1">教材封面设计</h4><p class="text-text-primary text-xs font-cn">1+X 证书制度系列教材</p></div></div>
+          <div class="work-card glass-card aspect-[4/3] rounded-xl relative cursor-pointer overflow-hidden reveal" onclick="openModal('gd-poster')" style="transition-delay:.1s"><div class="work-img w-full h-full overflow-hidden"><img src="07.webp" alt="品牌与运营视觉" class="w-full h-full object-cover"></div><div class="absolute bottom-0 left-0 right-0 p-5 pointer-events-none bg-gradient-to-t from-black/60 to-transparent"><h4 class="font-cn font-semibold text-text-primary text-base mb-1">品牌与运营视觉</h4><p class="text-text-primary text-xs font-cn">跨越多种商业语境的视觉传达实践</p></div></div>
+        </div>
+      </div>
+      <!-- PPT -->
+      <div id="tab-ppt" class="tab-content hidden">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div class="work-card glass-card aspect-[4/3] rounded-xl relative cursor-pointer overflow-hidden reveal" onclick="window.location.href='ppt-gallery.html'"><div class="work-img w-full h-full overflow-hidden"><img src="08.webp" alt="PPT 设计" class="w-full h-full object-cover transition-transform duration-500" style="object-position:0% 0%"></div><div class="absolute bottom-0 left-0 right-0 p-5 pointer-events-none bg-gradient-to-t from-black/70 to-transparent"><h4 class="font-cn font-semibold text-text-primary text-base mb-1">课程视觉系统设计</h4><p class="text-white/70 text-xs font-cn">面向多教学场景的标准化演示规范</p></div></div>
+          <div class="work-card glass-card aspect-[4/3] rounded-xl relative cursor-pointer overflow-hidden reveal" style="transition-delay:.1s" onclick="window.location.href='ppt-beautify.html'"><div class="work-img w-full h-full overflow-hidden"><img src="09.webp" alt="演示设计与重构" class="w-full h-full object-cover transition-transform duration-500" style="object-position:0% 0%"></div><div class="absolute bottom-0 left-0 right-0 p-5 pointer-events-none bg-gradient-to-t from-black/70 to-transparent"><h4 class="font-cn font-semibold text-text-primary text-base mb-1">演示设计与重构</h4><p class="text-white/70 text-xs font-cn">多行业的信息可视化编排</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL -->
+  <div id="modalBackdrop" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-[100] opacity-0 pointer-events-none transition-opacity" onclick="closeModal()"></div>
+  <div id="modalContainer" class="fixed z-[101] opacity-0 pointer-events-none transition-all duration-300
+    top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-95
+    w-[calc(100vw-24px)] max-w-[1200px]
+    max-h-[calc(100vh-24px)]"
+    style="transition-timing-function:cubic-bezier(.16,1,.3,1)">
+    <button class="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-[#222] border border-white/10 flex items-center justify-center cursor-pointer z-[102] hover:bg-[#333] transition-all" onclick="closeModal()"><svg class="w-4 h-4 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+    <div class="w-full h-full flex flex-col md:flex-row bg-[#161616] border border-white/[.06] rounded-2xl overflow-hidden" style="max-height:calc(100vh - 24px)">
+      <!-- 图片区 -->
+      <div class="w-full md:w-[61%] flex-shrink-0 relative bg-[#111]" style="height:55vw;max-height:706px;min-height:200px">
+        <div class="w-full h-full flex items-center justify-center relative" id="modalMainImg">
+          <p class="font-mono text-xs text-text-muted opacity-40" id="modalMainLabel">项目作品</p>
+          <button class="absolute top-1/2 -translate-y-1/2 left-3 w-10 h-10 rounded-full bg-black/70 border border-white/10 flex items-center justify-center cursor-pointer opacity-0 hover:bg-accent/30 transition-all" id="modalPrev" onclick="prevItem()"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></button>
+          <button class="absolute top-1/2 -translate-y-1/2 right-3 w-10 h-10 rounded-full bg-black/70 border border-white/10 flex items-center justify-center cursor-pointer opacity-0 hover:bg-accent/30 transition-all" id="modalNext" onclick="nextItem()"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></button>
+          <div class="absolute bottom-3 left-1/2 -translate-x-1/2"><span class="font-mono text-xs text-white bg-black/70 px-2 py-1 rounded backdrop-blur-sm" id="modalPageCounter">1/4</span></div>
+        </div>
+      </div>
+      <!-- 信息区 -->
+      <div class="flex-1 px-5 py-5 overflow-y-auto flex flex-col border-t md:border-t-0 md:border-l border-white/[.06]">
+        <div><p class="font-mono text-xs text-accent tracking-[.2em] uppercase mb-3" id="modalCategory">平面设计</p><h3 class="font-display font-bold text-xl text-text-primary mb-1" id="modalTitle">项目名称</h3><p class="text-text-secondary text-sm leading-[1.8] font-cn text-justify" id="modalDesc">项目简介</p></div>
+        <div class="border-t border-border-subtle pt-4 mt-6 pb-5"><p class="text-text-muted text-xs font-mono mb-2">当前作品</p><h4 class="font-cn font-semibold text-text-primary text-base mb-1" id="modalItemTitle">作品标题</h4><p class="text-text-secondary text-sm leading-[1.8] font-cn text-justify" id="modalItemDesc">作品描述</p></div>
+        <p class="hidden" id="modalHighlight"></p><div class="hidden" id="modalTools"></div><a class="hidden" id="modalDetailLink" href="#"></a>
+        <div class="mt-auto pt-5 border-t border-border-subtle"><p class="text-text-muted text-xs font-mono mb-3">查看其他作品</p><div class="flex gap-[10px] overflow-x-auto pb-2" style="scrollbar-width:none;-webkit-overflow-scrolling:touch;mask-image:linear-gradient(to right,black 80%,transparent 100%);-webkit-mask-image:linear-gradient(to right,black 80%,transparent 100%);padding-right:24px" id="modalThumbs"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section id="contact" class="relative py-28 md:py-36 border-t border-border-subtle">
+    <div class="orb w-[350px] h-[350px] bg-accent-bright opacity-[.06] bottom-0 right-0" style="position:absolute"></div>
+    <div class="max-w-[1152px] mx-auto px-6"><div class="max-w-2xl mx-auto text-center">
+      <div class="reveal"><p class="font-mono text-xs text-accent tracking-[0.3em] uppercase mb-3">Contact</p><h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight mb-4">Let's create something<br><span class="accent-text">functional</span> and <span class="accent-text">beautiful</span>.</h2></div>
+      <div class="reveal mt-12 space-y-5" style="transition-delay:.15s">
+        <div class="flex items-center justify-center gap-3 text-text-secondary"><svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="font-cn text-base">北京 · 朝阳区</span></div>
+        <div class="flex items-center justify-center gap-3"><svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><a href="mailto:1017022264@qq.com" class="email-link font-mono text-base">1017022264@qq.com</a></div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-border-subtle py-8"><div class="max-w-[1152px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4"><p class="text-text-muted text-xs font-mono">© 2026 Snowxx. All rights reserved.</p><p class="text-text-muted text-xs font-mono">Designed with precision<span class="accent-text ml-1">.</span></p></div></footer>
+
+  <script>
+    // Mobile Menu
+    const mt=document.getElementById('menuToggle'),mm=document.getElementById('mobileMenu'),mc2=document.getElementById('menuClose'),b1=document.getElementById('bar1'),b2=document.getElementById('bar2'),b3=document.getElementById('bar3');let mo=false;
+    function openMenu(){mo=true;mm.classList.add('open');b1.style.transform='rotate(45deg) translate(3px,3px)';b2.style.opacity='0';b3.style.transform='rotate(-45deg) translate(4px,-4px)';b3.style.width='1.25rem';document.body.style.overflow='hidden';}
+    function closeMenu(){mo=false;mm.classList.remove('open');b1.style.transform='';b2.style.opacity='1';b3.style.transform='';b3.style.width='0.875rem';document.body.style.overflow='';}
+    mt.addEventListener('click',()=>mo?closeMenu():openMenu());
+    mc2.addEventListener('click',closeMenu);
+    document.querySelectorAll('.nav-mobile-link').forEach(l=>l.addEventListener('click',closeMenu));
+    // Tabs
+    document.querySelectorAll('.tab-btn').forEach(btn=>btn.addEventListener('click',()=>{const t=btn.dataset.tab;document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.tab-content').forEach(c=>c.classList.add('hidden'));document.getElementById('tab-'+t).classList.remove('hidden');document.getElementById('tab-'+t).querySelectorAll('.reveal').forEach(el=>{el.classList.remove('visible');requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('visible')));});}));
+    const savedTab=localStorage.getItem('activeTab');if(savedTab){localStorage.removeItem('activeTab');const btn=document.querySelector('.tab-btn[data-tab="'+savedTab+'"]');if(btn)btn.click();}
+    // Reveal
+    const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+    // Nav active
+    const no2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)document.querySelectorAll('.nav-link').forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id));}),{threshold:.3});document.querySelectorAll('section').forEach(s=>no2.observe(s));
+    // Modal
+    const modalData={'gd-cover':{category:'平面设计',title:'教材封面设计',desc:'运用色彩分级与扁平化视觉语言，为 1+X 证书制度系列教材构建统一且具高度辨识度的出版级视觉系统。',detailLink:'#',items:[{label:'初级',title:'新媒体营销初级',desc:'为国家级职业教育 1+X 证书配套教材提供封面视觉方案。以低饱和度的紫色调搭配抽象化营销图标，营造专业且具有亲和力的教育视觉。',image:'06-1-1.webp',thumb:'06-1.webp'},{label:'中级',title:'新媒体营销中级',desc:'针对中级营销技能的业务深度，将主色调平滑过渡至沉稳的专业蓝，保持视觉统一性的同时彰显专业深度。',image:'06-2-1.webp',thumb:'06-2.webp'}]},'gd-poster':{category:'平面设计',title:'品牌与运营视觉',desc:'跨越多种商业语境的视觉传达实践',detailLink:'#',items:[{label:'项目 01',title:'深夜独白  毕设海报',desc:'谢菲尔德哈勒姆大学珠宝设计毕业展海报',images:['07-1-1.webp','07-1-2.webp']},{label:'项目 02',title:'主题生日派对邀请函',desc:'结合 AIGC 技术的潮流视觉探索',image:'07-2-1.webp'},{label:'项目 03',title:'人工智能+专业课程 数字化改造项目公众号长图',desc:'B 端教育业务宣发',image:'07-3-1.webp'},{label:'项目 04',title:'交银施罗德基金公众号长图',desc:'数据可视化与长图排版',image:'07-4-1.webp'},{label:'项目 05',title:'联创新世纪业务报价单',desc:'业务标准化视觉物料设计',image:'07-5-1.webp'}]},'gd-ppt':{category:'PPT 设计',title:'PPT 设计',desc:'为企业设计高端商务风格的 PPT 模板系统，覆盖年度汇报、产品发布、培训课件等多种场景。',detailLink:'#',items:[{label:'PPT 01',title:'企业年度汇报',desc:'深色主题年度总结汇报模板。',pages:['封面页','目录页','数据图表页','总结页']},{label:'PPT 02',title:'产品发布演示',desc:'科技感全屏沉浸式演示方案。',pages:['封面页','产品展示页','结尾页']},{label:'PPT 03',title:'培训课件模板',desc:'浅色主题教学课件。',pages:['封面页','章节页','内容页']}]}};
+    let ck=null,ci=0,cp=0;
+    function openModal(k){const d=modalData[k];if(!d)return;ck=k;ci=0;cp=0;document.getElementById('modalCategory').textContent=d.category;document.getElementById('modalTitle').textContent=d.title;document.getElementById('modalDesc').innerHTML=d.desc;document.getElementById('modalHighlight').textContent='';document.getElementById('modalDetailLink').href=d.detailLink;document.getElementById('modalTools').innerHTML='';const th=document.getElementById('modalThumbs');th.innerHTML=d.items.map((it,i)=>{const thumbSrc=it.thumb||(it.images&&it.images[0])||it.image;if(thumbSrc){return '<div class="thumb-item flex-shrink-0 w-[72px] h-[96px] rounded-lg border-2 '+(i===0?'border-accent opacity-100':'border-white/[0.08] opacity-50')+' overflow-hidden cursor-pointer hover:opacity-80 transition-all" data-index="'+i+'" onclick="selectItem('+i+')"><img src="'+thumbSrc+'" alt="'+it.label+'" class="w-full h-full object-cover"></div>';}else{return '<div class="thumb-item flex-shrink-0 w-[72px] h-[96px] rounded-lg border-2 '+(i===0?'border-accent opacity-100':'border-white/[0.08] opacity-50')+' bg-[#1A1A1A] flex items-center justify-center cursor-pointer hover:opacity-80 transition-all" data-index="'+i+'" onclick="selectItem('+i+')"><span class="font-mono text-[10px] text-text-muted">'+it.label+'</span></div>';}}).join('');selectItem(0);document.getElementById('modalBackdrop').style.opacity='1';document.getElementById('modalBackdrop').style.pointerEvents='auto';const mc=document.getElementById('modalContainer');mc.style.opacity='1';mc.style.pointerEvents='auto';mc.style.transform='translate(-50%,-50%) scale(1)';document.body.style.overflow='hidden';}
+    function selectItem(i){const d=modalData[ck];if(!d)return;ci=i;cp=0;const it=d.items[i];document.getElementById('modalItemTitle').textContent=it.title;document.getElementById('modalItemDesc').innerHTML=it.desc;document.querySelectorAll('.thumb-item').forEach(el=>{const idx=parseInt(el.getAttribute('data-index'));const hasImg=el.querySelector('img')!==null;if(idx===i){if(hasImg){el.className='thumb-item flex-shrink-0 w-[72px] h-[96px] rounded-lg border-2 border-accent opacity-100 overflow-hidden cursor-pointer hover:opacity-80 transition-all';}else{el.className='thumb-item flex-shrink-0 w-[72px] h-[96px] rounded-lg border-2 border-accent opacity-100 bg-[#1A1A1A] flex items-center justify-center cursor-pointer hover:opacity-80 transition-all';}}else{if(hasImg){el.className='thumb-item flex-shrink-0 w-[72px] h-[96px] rounded-lg border-2 border-white/[0.08] opacity-50 overflow-hidden cursor-pointer hover:opacity-80 transition-all';}else{el.className='thumb-item flex-shrink-0 w-[72px] h-[96px] rounded-lg border-2 border-white/[0.08] opacity-50 bg-[#1A1A1A] flex items-center justify-center cursor-pointer hover:opacity-80 transition-all';}}});
+    // 自动滚动让选中的缩略图进入视野
+    const container=document.getElementById('modalThumbs');const activeEl=container.querySelector('[data-index="'+i+'"]');if(activeEl&&container){const itemLeft=activeEl.offsetLeft;const itemWidth=activeEl.offsetWidth;const containerWidth=container.clientWidth;const scrollTarget=itemLeft-(containerWidth/2)+(itemWidth/2);container.scrollTo({left:scrollTarget,behavior:'smooth'});}
+    upd();}
+    let imageScale=1;let slideDirection='next';
+    function upd(){const d=modalData[ck];if(!d)return;const it=d.items[ci];const label=document.getElementById('modalMainLabel');const prev=document.getElementById('modalPrev');const next=document.getElementById('modalNext');const counter=document.getElementById('modalPageCounter');const mainImg=document.getElementById('modalMainImg');imageScale=1;let imgContainer=document.getElementById('imgContainer');const hasImages=it.images&&it.images.length>0;const hasSingleImage=it.image;if(hasImages||hasSingleImage){label.style.display='none';if(!imgContainer){imgContainer=document.createElement('div');imgContainer.id='imgContainer';imgContainer.style.cssText='width:100%;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;position:absolute;inset:0';mainImg.insertBefore(imgContainer,label);}else{imgContainer.style.display='flex';imgContainer.style.overflow='hidden';imgContainer.style.alignItems='center';imgContainer.style.justifyContent='center';imgContainer.style.textAlign='';imgContainer.scrollLeft=0;imgContainer.scrollTop=0;}const currentImage=hasImages?it.images[cp]:it.image;const existingImg=imgContainer.querySelector('img');if(existingImg&&existingImg.src.endsWith(currentImage)){imgContainer.innerHTML='<img src="'+currentImage+'" alt="'+it.title+'" style="max-width:100%;max-height:100%;width:auto;height:auto;display:block;cursor:zoom-in;object-fit:contain;transform-origin:center center" id="zoomableImg" onclick="toggleZoom()">';}else if(hasImages&&existingImg){const startX=slideDirection==='next'?'100%':'-100%';const endX=slideDirection==='next'?'-100%':'100%';existingImg.style.transition='transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';existingImg.style.transform='translateX('+endX+')';setTimeout(()=>{const newImg=document.createElement('img');newImg.src=currentImage;newImg.alt=it.title;newImg.id='zoomableImg';newImg.onclick=function(){toggleZoom();};newImg.style.cssText='max-width:100%;max-height:100%;width:auto;height:auto;display:block;cursor:zoom-in;object-fit:contain;transform-origin:center center;transform:translateX('+startX+');transition:transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';imgContainer.innerHTML='';imgContainer.appendChild(newImg);setTimeout(()=>{newImg.style.transform='translateX(0)';},10);},50);}else{imgContainer.innerHTML='<img src="'+currentImage+'" alt="'+it.title+'" style="max-width:100%;max-height:100%;width:auto;height:auto;display:block;cursor:zoom-in;object-fit:contain;transform-origin:center center" id="zoomableImg" onclick="toggleZoom()">';}let zoomBtns=document.getElementById('zoomButtons');if(!zoomBtns){zoomBtns=document.createElement('div');zoomBtns.id='zoomButtons';zoomBtns.style.cssText='position:absolute;bottom:10px;right:10px;display:flex;gap:8px;z-index:10';zoomBtns.innerHTML='<button onclick="zoomOut(event)" style="width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.7);border:1px solid rgba(255,255,255,0.1);color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;line-height:1;padding:0">−</button><button onclick="zoomIn(event)" style="width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.7);border:1px solid rgba(255,255,255,0.1);color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;line-height:1;padding:0">+</button>';mainImg.appendChild(zoomBtns);}let previewContainer=document.getElementById('previewThumbnails');if(hasImages&&it.images.length>1){const wasVisible=previewContainer?previewContainer.style.opacity==='1':false;if(!previewContainer){previewContainer=document.createElement('div');previewContainer.id='previewThumbnails';previewContainer.style.cssText='position:absolute;bottom:50px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:10;opacity:0;transition:opacity 0.3s';mainImg.appendChild(previewContainer);mainImg.onmouseenter=()=>{prev.style.opacity='1';next.style.opacity='1';if(previewContainer)previewContainer.style.opacity='1'};mainImg.onmouseleave=()=>{prev.style.opacity='0';next.style.opacity='0';if(previewContainer)previewContainer.style.opacity='0'};}previewContainer.innerHTML=it.images.map((img,idx)=>'<div class="preview-thumb" style="width:50px;height:50px;border-radius:6px;overflow:hidden;cursor:pointer;border:2px solid '+(idx===cp?'rgba(138,43,226,0.8)':'rgba(255,255,255,0.2)')+';transition:all 0.3s;position:relative" onclick="event.stopPropagation();cp='+idx+';upd()"><img src="'+img+'" style="width:100%;height:100%;object-fit:cover;display:block"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.5);transition:opacity 0.3s;opacity:'+(idx===cp?'0':'1')+'"></div></div>').join('');if(wasVisible){previewContainer.style.opacity='1';}}else if(previewContainer){previewContainer.remove();}if(hasImages){const t=it.images.length;counter.textContent=(cp+1)+' / '+t;prev.style.display=t>1?'':'none';next.style.display=t>1?'':'none';counter.parentElement.style.display=t>1?'':'none';}else{prev.style.display='none';next.style.display='none';counter.parentElement.style.display='none';}}else{if(imgContainer){imgContainer.remove();imgContainer=null;}const zoomBtns=document.getElementById('zoomButtons');if(zoomBtns)zoomBtns.remove();const previewContainer=document.getElementById('previewThumbnails');if(previewContainer)previewContainer.remove();label.style.display='block';const pg=it.pages||['作品展示'],t=pg.length;label.textContent=it.label+' · '+pg[cp];counter.textContent=(cp+1)+' / '+t;prev.style.display=t>1?'':'none';next.style.display=t>1?'':'none';counter.parentElement.style.display=t>1?'':'none';}}
+    function applyZoom(){var img=document.getElementById('zoomableImg');var container=document.getElementById('imgContainer');if(!img||!container)return;if(imageScale<=1){img.style.transform='';img.style.maxWidth='100%';img.style.maxHeight='100%';img.style.width='auto';img.style.height='auto';img.style.cursor='zoom-in';img.style.margin='';img.style.flexShrink='';container.style.overflow='hidden';container.style.display='flex';container.style.alignItems='center';container.style.justifyContent='center';container.scrollLeft=0;container.scrollTop=0;}else{var cw=container.clientWidth;var ch=container.clientHeight;var natW=img.naturalWidth||img.offsetWidth;var natH=img.naturalHeight||img.offsetHeight;var ratio=Math.min(cw/natW,ch/natH);var baseW=natW*ratio;var baseH=natH*ratio;var newW=baseW*imageScale;var newH=baseH*imageScale;img.style.transform='';img.style.maxWidth='none';img.style.maxHeight='none';img.style.width=newW+'px';img.style.height=newH+'px';img.style.cursor='zoom-out';container.style.overflow='auto';container.style.display='flex';container.style.alignItems='flex-start';container.style.justifyContent='center';img.style.margin='0 auto';img.style.flexShrink='0';requestAnimationFrame(function(){var scrollL=(container.scrollWidth-container.clientWidth)/2;container.scrollLeft=scrollL;container.scrollTop=0;});}}
+    function zoomIn(e){e.stopPropagation();if(imageScale<6){imageScale+=0.5;applyZoom();}}
+    function zoomOut(e){e.stopPropagation();if(imageScale>1){imageScale-=0.5;if(imageScale<1)imageScale=1;applyZoom();}}
+    function toggleZoom(){if(imageScale===1){imageScale=2;}else{imageScale=1;}applyZoom();}
+    function prevItem(){if(cp>0){slideDirection='prev';cp--;upd();}}
+    function nextItem(){const d=modalData[ck];if(!d)return;const it=d.items[ci];const maxPages=(it.images&&it.images.length)||(it.pages&&it.pages.length)||1;if(cp<maxPages-1){slideDirection='next';cp++;upd();}}
+    function closeModal(){document.getElementById('modalBackdrop').style.opacity='0';document.getElementById('modalBackdrop').style.pointerEvents='none';const mc=document.getElementById('modalContainer');mc.style.opacity='0';mc.style.pointerEvents='none';mc.style.transform='translate(-50%,-50%) scale(0.95)';document.body.style.overflow='';}
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();const mc=document.getElementById('modalContainer');if(mc.style.opacity==='1'){if(e.key==='ArrowLeft')prevItem();if(e.key==='ArrowRight')nextItem();}});
+  </script>
+</body>
+</html>
